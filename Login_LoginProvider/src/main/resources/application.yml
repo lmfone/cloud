@@ -1,0 +1,28 @@
+server:
+  port: 8081
+spring:
+  rabbitmq:
+    host: 39.105.189.141
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  cloud:
+    nacos:
+      discovery: #实现注册中心
+        server-addr: 124.71.183.250:8848
+    sleuth:
+      sampler:
+        probability: 1  #采样率 Sleuth
+    zipkin:
+      sender:
+        type: web   #通过http协议推送数据
+      base-url: http://localhost:9411  #Zipkin可视化服务地址  Zipkin-server
+      service:
+        name: likeprovider
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_cloudoffer?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
