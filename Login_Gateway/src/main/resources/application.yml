@@ -1,0 +1,25 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: LoginGateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.71.183.250:8848
+    gateway:
+      routes:
+      - id: Loginapi
+        uri: lb://LoginApi
+        predicates:
+        - Path=/Login/**
+        filters:
+        - StripPrefix=1    #表示路由时会去除的路径级别
+
+
+      - id: userapi
+        uri: lb://LoginApi
+        predicates:
+        - Path=/user/**
+        filters:
+        - StripPrefix=1    #表示路由时会去除的路径级别
